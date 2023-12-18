@@ -1,2 +1,15 @@
-export const WHITELIST_COLLECTION =
-  "0x32dd588f23a95280134107a22c064cea065327e9";
+export const WHITELIST_COLLECTIONS = [
+  "0x3Fe1a4c1481c8351E91B64D5c398b159dE07cbc5", //SupDucks
+  "0x1a92f7381b9f03921564a437210bb9396471050c", //Cool Cats
+  "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D", //BAYC
+  "0xEdB61f74B0d09B2558F1eeb79B247c1F363Ae452", //GutterCats
+  "0x8a90cab2b38dba80c64b7734e58ee1db38b8992e", //Doodles
+  "0x2acab3dea77832c09420663b0e1cb386031ba17b", //DeadFellaz
+  "0x735eff20e5cfca52d72a9e5eba5a2eb6cc92357a", //MegaToads
+  "0xc5e55e4bd5fef12831b5a666fc9e391538acdc45", //DentedFeels
+  "0x57a204aa1042f6e66dd7730813f4024114d74f37", //CyberKongz
+  "0x7cba74d0b16c8e18a9e48d3b7404d7739bb24f23", //FoxFam
+  "0x9d418c2cae665d877f909a725402ebd3a0742844", //FangGang
+  "0xd774557b647330c91bf44cfeab205095f7e6c367", //Nakamigos
+  "0x0c2e57efddba8c768147d1fdf9176a0a6ebd5d83", //KaijuKings
+];
