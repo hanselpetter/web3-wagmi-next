@@ -23,7 +23,6 @@ const ProfileId: NextPage = () => {
   );
 
   const getProfile = async () => {
-    console.log(nft);
     if (nft && !nftLoading) {
       const prompt = `Give my friend a NAME(first and last name) and BIOGRAPHY(60 - 70 words) they are a ${
         nft.name.split("#")[0]

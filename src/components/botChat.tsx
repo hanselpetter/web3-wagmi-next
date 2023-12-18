@@ -3,6 +3,8 @@ import Image from "next/image";
 import { TopArrow } from "./svgIcons";
 import { generateText } from "../utils/generateText";
 import { Chat, NftDetail, UserProfile } from "../utils/type";
+import { useAccount } from "wagmi";
+import { useWalletData } from "../hooks/useWalletData";
 
 interface Bot {
   profile: UserProfile;
@@ -12,7 +14,10 @@ interface Bot {
 const BotChat: FC<Bot> = ({ profile, nft }) => {
   const [prompt, setPrompt] = useState("");
   const [waiting, setWating] = useState(false);
+  const { isConnected, address } = useAccount();
   const messagesContainerRef = useRef<HTMLDivElement | null>(null);
+
+  const { ensImage, loading } = useWalletData(address as string);
 
   const scrollToBottom = () => {
     if (messagesContainerRef.current) {
@@ -68,6 +73,8 @@ const BotChat: FC<Bot> = ({ profile, nft }) => {
     scrollToBottom();
   }, [charts]);
 
+  if (!isConnected) return <></>; // Use can't chat on disconnected status
+
   return (
     <div className="rounded-[10px] border-2 bg-white border-black overflow-hidden">
       <div className="p-3 bg-primary-300 text-[20px] font-bold text-white/50">
@@ -106,12 +113,18 @@ const BotChat: FC<Bot> = ({ profile, nft }) => {
               ) : (
                 <>
                   <div className="w-11 h-11 overflow-hidden border border-white shadow-active relative rounded-full">
-                    <Image
-                      src="/images/default-avatar.png"
-                      fill
-                      objectFit="cover"
-                      alt=""
-                    />
+                    {loading ? (
+                      <div className="w-full h-full animate-pulse bg-primary-200 rounded-full" />
+                    ) : ensImage ? (
+                      <Image src={ensImage} fill alt="" />
+                    ) : (
+                      <Image
+                        src="/images/default-avatar.png"
+                        fill
+                        objectFit="cover"
+                        alt=""
+                      />
+                    )}
                   </div>
                   <div className="w-[calc(100%-56px)]">
                     <p className="font-bold text-[20px] text-primary-80 leading-6">

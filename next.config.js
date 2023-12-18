@@ -18,6 +18,11 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "assets.airstack.xyz",
+        pathname: "**/*.svg",
+      },
+      {
+        protocol: "https",
         hostname: "megavolt.mypinata.cloud",
         pathname: "**/*.png",
       },

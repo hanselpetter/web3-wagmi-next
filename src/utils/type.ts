@@ -52,3 +52,8 @@ export interface UserProfile {
   };
   bio: "";
 }
+
+export interface Wallet {
+  name: string | null;
+  ensImage: string | null;
+}
