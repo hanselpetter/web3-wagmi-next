@@ -25,7 +25,7 @@ const ConnectButton: FC = () => {
   if (!isConnected) {
     return pathname !== "/" ? (
       <button
-        className="border-2 rounded-lg py-1.5 px-8 text-white font-bold text-lg hover:shadow-active"
+        className="border-2 rounded-lg py-1.5 px-4 lg:px-8 text-white font-bold text-sm lg:text-lg hover:shadow-active"
         onClick={openConnectModal}
       >
         Connect Wallet
@@ -51,9 +51,9 @@ const ConnectButton: FC = () => {
           )}
         </div>
         {loading ? (
-          <div className="rounded w-[100px] h-5 animate-pulse bg-primary-200" />
+          <div className="rounded w-[100px] h-5 animate-pulse bg-primary-200 hidden lg:block" />
         ) : (
-          <div className="font-semibold tracking-[7%] text-white">
+          <div className="font-semibold tracking-[7%] text-white hidden lg:block">
             {name ? name : `${address?.slice(0, 6)}...${address?.slice(-4)}`}
           </div>
         )}

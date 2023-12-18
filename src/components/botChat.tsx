@@ -1,6 +1,6 @@
 import { FC, useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { TopArrow } from "./svgIcons";
+import { CloseIcon, TopArrow } from "./svgIcons";
 import { generateText } from "../utils/generateText";
 import { Chat, NftDetail, UserProfile } from "../utils/type";
 import { useAccount } from "wagmi";
@@ -15,6 +15,7 @@ const BotChat: FC<Bot> = ({ profile, nft }) => {
   const [prompt, setPrompt] = useState("");
   const [waiting, setWating] = useState(false);
   const { isConnected, address } = useAccount();
+  const [isOpen, setIsOpen] = useState(false); // For mobile open/close
   const messagesContainerRef = useRef<HTMLDivElement | null>(null);
 
   const { ensImage, loading } = useWalletData(address as string);
@@ -64,7 +65,6 @@ const BotChat: FC<Bot> = ({ profile, nft }) => {
       });
     }
     setCharts(old);
-    console.log(res);
     setWating(false);
     scrollToBottom();
   };
@@ -76,9 +76,25 @@ const BotChat: FC<Bot> = ({ profile, nft }) => {
   if (!isConnected) return <></>; // Use can't chat on disconnected status
 
   return (
-    <div className="rounded-[10px] border-2 bg-white border-black overflow-hidden">
-      <div className="p-3 bg-primary-300 text-[20px] font-bold text-white/50">
+    <div
+      className="z-50 lg:right-0 fixed lg:relative w-[calc(100%-40px)] md:w-[380px] lg:w-full lg:block rounded-[10px] border-2 bg-white border-black overflow-hidden lg:!bottom-auto"
+      style={{
+        bottom: !isOpen ? -540 : 2,
+      }}
+    >
+      <div
+        className="p-3 bg-primary-300 text-[20px] font-bold text-white/50"
+        onClick={() => setIsOpen(!isOpen)}
+      >
         Chat
+        <button
+          className="lg:hidden block absolute right-4 top-5"
+          style={{
+            rotate: !isOpen ? "180deg" : "0deg",
+          }}
+        >
+          <CloseIcon />
+        </button>
       </div>
       <div className="h-[520px] relative rounded-[10px]">
         <div

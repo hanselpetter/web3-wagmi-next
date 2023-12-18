@@ -5,8 +5,8 @@ export const useWalletData = (userAdderss: string, blockchain?: string) => {
     query MyQuery {
         Wallet(
         input: {identity: "${userAdderss}", blockchain: ${
-    blockchain ? blockchain : "ethereum"
-  }}
+          blockchain ? blockchain : "ethereum"
+        }}
         ) {
         domains {
             name
@@ -27,7 +27,7 @@ export const useWalletData = (userAdderss: string, blockchain?: string) => {
     }
     `;
   const { data, loading, error } = useQuery(query);
-  
+
   let name: string | null = null;
   let ensImage: string | null = null;
 
@@ -36,7 +36,7 @@ export const useWalletData = (userAdderss: string, blockchain?: string) => {
     if (domains && domains.length !== 0) {
       name = domains.find((domain: any) => domain.isPrimary).name;
       ensImage = domains.find((domain: any) => domain.isPrimary).tokenNft
-        .contentValue.image.medium;
+        .contentValue.image?.medium;
     }
   }
   return { name, ensImage, loading, error };
