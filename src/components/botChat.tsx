@@ -1,10 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { TopArrow } from "./svgIcons";
 import { generateText } from "../utils/generateText";
-import { Chat } from "../utils/type";
+import { Chat, NftDetail, UserProfile } from "../utils/type";
 
-const BotChat = () => {
+interface Bot {
+  profile: UserProfile;
+  nft: NftDetail;
+}
+
+const BotChat: FC<Bot> = ({ profile, nft }) => {
   const [prompt, setPrompt] = useState("");
   const [waiting, setWating] = useState(false);
   const messagesContainerRef = useRef<HTMLDivElement | null>(null);
@@ -39,7 +44,14 @@ const BotChat = () => {
     setPrompt("");
     scrollToBottom();
     setWating(true);
-    const res = await generateText({ topic: "nft web3 profile avatar", prompt });
+    const res = await generateText({
+      topic: `You are a helpful assistant. You have ${nft.attributes
+        .map(({ trait_type, value }) => `${trait_type}: ${value}`)
+        .join(", ")}.Your name is ${profile.name.firstName} ${
+        profile.name.lastName
+      }. Your bio ${profile.bio}.`,
+      prompt,
+    });
     if (res) {
       old.push({
         role: "ai",
@@ -72,7 +84,7 @@ const BotChat = () => {
                 <>
                   <div className="w-11 h-11 overflow-hidden border border-white shadow-active relative rounded-full">
                     <Image
-                      src="/images/demo/1.png"
+                      src={nft.image.extraSmall}
                       fill
                       objectFit="cover"
                       alt=""
@@ -80,7 +92,7 @@ const BotChat = () => {
                   </div>
                   <div className="w-[calc(100%-56px)]">
                     <p className="font-bold text-[20px] text-primary-80 leading-6">
-                      Cliv
+                      {profile.name.firstName}
                     </p>
                     <p className="text-[20px] text-primary-80 leading-6">
                       {charts.length === key + 1 && waiting ? (

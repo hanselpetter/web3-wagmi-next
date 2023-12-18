@@ -15,7 +15,7 @@ const ProfileId: NextPage = () => {
   const [generating, setGenerating] = useState(true);
   const { query } = useRouter();
 
-  const [user, setUser] = useState<UserProfile | undefined | null>();
+  const [profile, setProfile] = useState<UserProfile | undefined | null>();
 
   const { nft, nftLoading } = useNftDetail(
     query.tokenAddress as string,
@@ -52,7 +52,7 @@ const ProfileId: NextPage = () => {
         });
 
         const userData = JSON.parse(sanitizedData);
-        setUser({
+        setProfile({
           name: {
             firstName: userData.name.firstName,
             lastName: userData.name.lastName,
@@ -80,8 +80,8 @@ const ProfileId: NextPage = () => {
             {generating ? (
               <div className="w-[200px] h-9 mb-2 rounded animate-pulse bg-primary-200" />
             ) : (
-              user && (
-                <h1 className="font-bold text-[40px]">{`${user.name.firstName} ${user.name.lastName}`}</h1>
+              profile && (
+                <h1 className="font-bold text-[40px]">{`${profile.name.firstName} ${profile.name.lastName}`}</h1>
               )
             )}
             <div className="flex gap-4 items-center">
@@ -231,14 +231,14 @@ const ProfileId: NextPage = () => {
                     <div className="w-3/4 h-4 rounded animate-pulse bg-primary-200" />
                   </div>
                 ) : (
-                  user && (
+                  profile && (
                     <p className="text-[20px] leading-[27px] opacity-50 font-semibold mt-0.5">
-                      {user.bio}
+                      {profile.bio}
                     </p>
                   )
                 )}
                 <div className="h-20" />
-                <BotChat />
+                {profile && <BotChat profile={profile} nft={nft} />}
               </div>
             </div>
           </div>
