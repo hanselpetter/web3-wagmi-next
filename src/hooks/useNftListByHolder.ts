@@ -39,6 +39,5 @@ export const useNftListByHolder = (holder: string[]) => {
     `;
   const { data, loading, error } = useQuery(query);
   const nfts: ItemInList[] = data?.TokenBalances?.TokenBalance;
-  console.log(data?.TokenBalances?.TokenBalance);
   return { nfts, loading, error };
 };

@@ -25,7 +25,7 @@ export interface ItemInList {
 }
 
 export interface NftDetail {
-  attributes: { trait_type: string; value: string }[];
+  attributes: [];
   date: number;
   name: string;
   tokenId: string;

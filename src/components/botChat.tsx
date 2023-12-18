@@ -46,7 +46,7 @@ const BotChat: FC<Bot> = ({ profile, nft }) => {
     setWating(true);
     const res = await generateText({
       topic: `You are a helpful assistant. You have ${nft.attributes
-        .map(({ trait_type, value }) => `${trait_type}: ${value}`)
+        .map((item: any) => `${item.key || item.trait_type}: ${item.value}`)
         .join(", ")}.Your name is ${profile.name.firstName} ${
         profile.name.lastName
       }. Your bio ${profile.bio}.`,

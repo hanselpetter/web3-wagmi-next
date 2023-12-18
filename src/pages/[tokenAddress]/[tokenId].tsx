@@ -23,11 +23,12 @@ const ProfileId: NextPage = () => {
   );
 
   const getProfile = async () => {
+    console.log(nft);
     if (nft && !nftLoading) {
       const prompt = `Give my friend a NAME(first and last name) and BIOGRAPHY(60 - 70 words) they are a ${
         nft.name.split("#")[0]
       } with ${nft.attributes
-        .map(({ trait_type, value }) => `${trait_type}: ${value}`)
+        .map((item: any) => `${item.key || item.trait_type}: ${item.value}`)
         .join(", ")}. Please provide with json data like 
         {
           name: {
@@ -37,6 +38,7 @@ const ProfileId: NextPage = () => {
           bio: BIOGRAPHY
         }
         `;
+      console.log("prompt", prompt);
       setGenerating(true);
       const data = await generateText({
         prompt,
@@ -201,10 +203,10 @@ const ProfileId: NextPage = () => {
                     Traits
                   </div>
                   <div className="p-3 flex flex-col gap-3">
-                    {nft.attributes.map((attr, key) => (
+                    {nft.attributes.map((attr: any, key) => (
                       <div className="flex gap-3" key={key}>
                         <div className="w-[170px] px-2 py-1.5 rounded-sm bg-secondary-100 text-primary-300 font-bold text-[18px]">
-                          {attr.trait_type}
+                          {attr.key ? attr.key : attr.trait_type}
                         </div>
                         <div className="w-[calc(100%-182px)] px-2 py-1.5 rounded-sm bg-secondary-200 text-primary-100 font-bold text-[18px] text-right">
                           {attr.value}

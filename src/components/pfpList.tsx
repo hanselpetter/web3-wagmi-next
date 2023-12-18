@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { FC, useEffect, useRef, useState } from "react";
 import { useAccount } from "wagmi";
-import { ItemInList, PfpItemType } from "../utils/type";
+import { ItemInList } from "../utils/type";
 import { useClickAway } from "../hooks/useClickAway";
 import { useRouter } from "next/router";
 import { useNftListByHolder } from "../hooks/useNftListByHolder";
@@ -52,7 +52,7 @@ const PfpList = () => {
                     className="w-[200px] h-[200px] bg-white relative shadow-active border-[9px] border-white z-10 overflow-hidden rounded-[16px]"
                   >
                     <Image
-                      src={selected.tokenNfts.contentValue.image.medium}
+                      src={selected.tokenNfts.contentValue.image.small}
                       className="rounded-[10px]"
                       objectFit="cover"
                       loading="lazy"
