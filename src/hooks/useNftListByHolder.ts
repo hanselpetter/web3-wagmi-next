@@ -1,5 +1,5 @@
 import { useQuery } from "@airstack/airstack-react";
-import { WHITELIST_COLLECTION } from "../config";
+import { WHITELIST_COLLECTIONS } from "../config";
 import { ItemInList } from "../utils/type";
 
 export const useNftListByHolder = (holder: string[]) => {
@@ -8,7 +8,9 @@ export const useNftListByHolder = (holder: string[]) => {
         TokenBalances(
           input: {
             filter: {
-              tokenAddress: { _eq: "${WHITELIST_COLLECTION}" }
+              tokenAddress: { _eq: [${WHITELIST_COLLECTIONS.map(
+                (collection) => `"${collection}"`
+              )}] }
               owner: {
                 _in: "${holder}"
               }
