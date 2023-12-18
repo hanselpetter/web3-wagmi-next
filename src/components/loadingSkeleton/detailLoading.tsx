@@ -1,6 +1,6 @@
 const DetailLoading = () => {
   return (
-    <div className="pt-[140px] max-w-[1280px] mx-auto">
+    <div className="pt-[140px] w-[calc(100%-40px)] xl:max-w-[1280px] mx-5 xl:mx-auto">
       <div className="animate-pulse bg-primary-200 rounded w-[180px] h-10" />
       <div className="flex gap-4 items-center">
         <div className="animate-pulse bg-primary-200 rounded w-[120px] h-5 my-2" />
