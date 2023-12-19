@@ -15,6 +15,7 @@ const ConnectButton: FC = () => {
   const { disconnect } = useDisconnect();
   const { name, ensImage, loading } = useWalletData(address as string);
 
+  // Copy Wallet Address
   const hanldeCopy = () => {
     setCopied(true);
     copy(address as string);
@@ -23,6 +24,7 @@ const ConnectButton: FC = () => {
     }, 1000);
   };
   if (!isConnected) {
+    // Disconnected State
     return pathname !== "/" ? (
       <button
         className="border-2 rounded-lg py-1.5 px-4 lg:px-8 text-white font-bold text-sm lg:text-lg hover:shadow-active"
@@ -34,6 +36,7 @@ const ConnectButton: FC = () => {
       <></>
     );
   } else {
+    // Connected State
     return (
       <div
         className="flex items-center gap-3 cursor-pointer relative group"

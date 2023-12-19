@@ -19,6 +19,26 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "assets.airstack.xyz",
+        pathname: "**/*.PNG",
+      },
+      {
+        protocol: "https",
+        hostname: "assets.airstack.xyz",
+        pathname: "**/*.jpg",
+      },
+      {
+        protocol: "https",
+        hostname: "assets.airstack.xyz",
+        pathname: "**/*.gif",
+      },
+      {
+        protocol: "https",
+        hostname: "assets.airstack.xyz",
+        pathname: "**/*.GIF",
+      },
+      {
+        protocol: "https",
+        hostname: "assets.airstack.xyz",
         pathname: "**/*.svg",
       },
       {

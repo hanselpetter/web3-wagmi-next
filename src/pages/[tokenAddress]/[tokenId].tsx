@@ -17,6 +17,7 @@ const ProfileId: NextPage = () => {
 
   const [profile, setProfile] = useState<UserProfile | undefined | null>();
 
+  // Fetch Whitelist NFT 
   const { nft, nftLoading } = useNftDetail(
     query.tokenAddress as string,
     query.tokenId as string
@@ -43,7 +44,6 @@ const ProfileId: NextPage = () => {
         topic: "",
       });
       if (data) {
-
         const sanitizedData = data.replace(/"([^"]+)":/g, (match, p1) => {
           // Replace double quotes within strings
           const sanitizedString = p1.replace(/"/g, '\\"');
@@ -147,8 +147,12 @@ const ProfileId: NextPage = () => {
                     />
                   </div>
                   <div className="">
-                    <h2 className="text-lg md:text-[30px] font-bold">The Board walk</h2>
-                    <p className="text-sm md:text-[20px] font-bold">MetaVerse</p>
+                    <h2 className="text-lg md:text-[30px] font-bold">
+                      The Board walk
+                    </h2>
+                    <p className="text-sm md:text-[20px] font-bold">
+                      MetaVerse
+                    </p>
                     <p className="text-sm md:text-[20px] font-bold mt-4">
                       Profile Views: 1234
                     </p>
@@ -157,7 +161,9 @@ const ProfileId: NextPage = () => {
                         <Image src={"/images/default-avatar.png"} fill alt="" />
                       </div>
                       <div className="">
-                        <p className="text-sm md:text-[22px] font-bold ">0xBdCc...Eb03</p>
+                        <p className="text-sm md:text-[22px] font-bold ">
+                          0xBdCc...Eb03
+                        </p>
                         <p className="text-sm md:text-[20px] font-semibold opacity-50">
                           Owner
                         </p>
@@ -249,6 +255,8 @@ const ProfileId: NextPage = () => {
               <div className="w-full lg:w-[calc(100%-574px)]">
                 <BioBox isMobile={false} />
                 <div className="h-20" />
+
+                {/* User can chat with bot with profile data */}
                 {profile && <BotChat profile={profile} nft={nft} />}
               </div>
             </div>

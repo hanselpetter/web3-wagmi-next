@@ -5,11 +5,11 @@ import { useAccount } from "wagmi";
 const DisconnectedIntro = () => {
   const { openConnectModal } = useConnectModal();
   const { isConnected } = useAccount();
-  if (isConnected) return;
+  if (isConnected) return <></>;
   return (
     <div className="min-h-screen grid place-content-center bg-white lg:bg-primary-50 overflow-x-hidden">
       <div className="w-full lg:w-[860px] rounded-[20px] bg-white flex items-center flex-col pt-5 pb-[56px]">
-        <div className="w-[420px] h-[260px] lg:w-[560px] lg:h-[350px] relative" >
+        <div className="w-[420px] h-[260px] lg:w-[560px] lg:h-[350px] relative">
           <div className="w-[120px] lg:w-[180px] h-[120px] lg:h-[180px] absolute overflow-hidden shadow-card rounded-[21px] -rotate-[17.57deg] z-10 left-12 lg:left-5 top-20">
             <Image src="/images/demo/1.png" fill alt="" />
           </div>

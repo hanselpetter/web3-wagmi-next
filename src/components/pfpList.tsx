@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useRef, useState } from "react";
 import { useAccount } from "wagmi";
 import { ItemInList } from "../utils/type";
 import { useClickAway } from "../hooks/useClickAway";
@@ -10,8 +10,8 @@ const PfpList = () => {
   const router = useRouter();
   const { address } = useAccount();
   const { nfts, loading } = useNftListByHolder([
-    // "0x0c12479BCCcb1023DdF9b18c904b13539c123dC4",
-    // "0x2Eb9b439Ffb7dC587198e1534e465a6242192b24",
+    "0x0c12479BCCcb1023DdF9b18c904b13539c123dC4",
+    "0x2Eb9b439Ffb7dC587198e1534e465a6242192b24",
     address as string,
   ]);
 
@@ -25,7 +25,7 @@ const PfpList = () => {
     setSelected(undefined);
   }, [generateRef]);
 
-  if (!isConnected) return;
+  if (!isConnected) return <></>;
 
   return (
     <div className="min-h-screen grid lg:place-content-center bg-white lg:bg-primary-50 pt-20 lg:pt-0">
@@ -85,6 +85,7 @@ const PfpList = () => {
           </h2>
         )}
         <div className="text-right mt-4">
+          {/* Move to NFT Detail (Generated Profile page) */}
           <button
             className="py-4 px-9 rounded-[20px] text-[21px] font-semibold text-white bg-primary-100 disabled:bg-primary-200 disabled:cursor-not-allowed"
             disabled={selected === undefined}

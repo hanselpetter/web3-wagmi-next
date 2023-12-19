@@ -16,8 +16,13 @@ const PfpList = dynamic(() => import("../components/pfpList") as any, {
 const Home: NextPage = () => {
   return (
     <main>
+      {/* Header include Wallet Connection */}
       <Header />
-      <DisconnectedIntro />
+
+      {/* Disconnected Status - include connect button */}
+      <DisconnectedIntro /> 
+
+      {/* Fetch and show component the NFTs */}
       <PfpList />
     </main>
   );

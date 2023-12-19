@@ -12,14 +12,16 @@ interface Bot {
 }
 
 const BotChat: FC<Bot> = ({ profile, nft }) => {
-  const [prompt, setPrompt] = useState("");
+  const [prompt, setPrompt] = useState(""); // state of prompt
   const [waiting, setWating] = useState(false);
-  const { isConnected, address } = useAccount();
-  const [isOpen, setIsOpen] = useState(false); // For mobile open/close
-  const messagesContainerRef = useRef<HTMLDivElement | null>(null);
 
+  const { isConnected, address } = useAccount();
   const { ensImage, loading } = useWalletData(address as string);
 
+  const [isOpen, setIsOpen] = useState(false); // For mobile open/close
+
+  // Scoll Focus on new message
+  const messagesContainerRef = useRef<HTMLDivElement | null>(null); // Scroll focus ref
   const scrollToBottom = () => {
     if (messagesContainerRef.current) {
       const { scrollHeight, clientHeight } = messagesContainerRef.current;
@@ -33,12 +35,14 @@ const BotChat: FC<Bot> = ({ profile, nft }) => {
   };
 
   const [charts, setCharts] = useState<Chat[]>([
+    // Define first message
     {
       role: "ai",
       content: "Hey how it going?",
     },
   ]);
 
+  // Send message
   const handleRequest = async () => {
     if (prompt.trim() === "") return;
     let old = charts;
@@ -166,7 +170,7 @@ const BotChat: FC<Bot> = ({ profile, nft }) => {
                 handleRequest();
               }
             }}
-            placeholder="Message Clive Mcduck"
+            placeholder={`Message ${profile.name.firstName} ${profile.name.lastName}`}
           />
           <button
             className="absolute border-2 border-black/30 rounded-[10px] bg-[#A6A6A6] right-2 py-2 px-2.5 top-1.5"
