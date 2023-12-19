@@ -10,8 +10,8 @@ const PfpList = () => {
   const router = useRouter();
   const { address } = useAccount();
   const { nfts, loading } = useNftListByHolder([
-    "0x0c12479BCCcb1023DdF9b18c904b13539c123dC4",
-    "0x2Eb9b439Ffb7dC587198e1534e465a6242192b24",
+    // "0x0c12479BCCcb1023DdF9b18c904b13539c123dC4",
+    // "0x2Eb9b439Ffb7dC587198e1534e465a6242192b24",
     address as string,
   ]);
 

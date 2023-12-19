@@ -8,7 +8,7 @@ export const useNftListByHolder = (holder: string[]) => {
         TokenBalances(
           input: {
             filter: {
-              tokenAddress: { _eq: [${WHITELIST_COLLECTIONS.map(
+              tokenAddress: { _in: [${WHITELIST_COLLECTIONS.map(
                 (collection) => `"${collection}"`
               )}] }
               owner: {
